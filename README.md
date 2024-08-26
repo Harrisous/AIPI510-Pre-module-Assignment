@@ -1,6 +1,6 @@
 # Premodule Assignment
 
-(Following is instructions for running the tool )
+(Following is instructions for running the tool)
 ## Running Instruction
 
 Before running, please make sure the original csv file is placed in ./data/raw folder.
