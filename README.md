@@ -10,13 +10,13 @@ run `pip install -r requirements.txt`
 Before running, please put the original csv file is placed in ./data/raw folder.
 
 This tool has following functions with example command line input:
-1. Print general information about the raw csv data to the terminal. 
+1. Print general information about the raw csv data to the terminal. <br>
 `python src/main.py data/raw/<filename> --info`
 
-2. Print first n rows in the raw csv data to the terminal.
+2. Print first n rows in the raw csv data to the terminal.<br>
 `python src/main.py data/raw/<filename> --view 5`
 
-3. Do a automatic cleaning to remove NAN data (first drop columns with NAN then rows)and store the modified data in ./data/processed.
+3. Do a automatic cleaning to remove NAN data (first drop columns with NAN then rows)and store the modified data in ./data/processed.<br>
 `python src/main.py data/raw/<filename> --clean`
 
 Run the main script: python src/main.py

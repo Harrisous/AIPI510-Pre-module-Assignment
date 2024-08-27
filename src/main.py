@@ -4,18 +4,21 @@ import os
 
 # function to display the information of the file
 def show_info(df):
-    print(df.info())
+    return df.info()
 
 # function to display the first n lines of the file
 def view_n_lines(df, num_lines):
-    print(df.head(num_lines))
+    return df.head(num_lines)
 
 # function to clean the file and save it to a new file
-def clean_and_save(df):
+def clean_df(df):
     # drop columns then rows
     df.dropna(axis=1, how='all', inplace=True)
     df.dropna(inplace=True)
+    return df
 
+# function to save the cleaned file
+def save_to_csv(df):
     # save the cleaned file
     output_path = os.path.join('.', 'data', 'processed', 'cleaned_file.csv') # avoid system specific path issues
     df.to_csv(output_path, index=False) # do not include the index
@@ -34,15 +37,15 @@ def main(file_path, info, view, clean):
             df = pd.read_csv(file_path)
             # check the flags in sequence
             if info:
-                show_info(df)
+                print(show_info(df))
             if view:
-                view_n_lines(df, view)
+                print(view_n_lines(df, view))
             if clean:
-                clean_and_save(df)
+                cleaned_df = clean_df(df)
+                save_to_csv(cleaned_df)
     except Exception as e:
         print(e)
         return
-
 
 # entry point for the application
 if __name__ == '__main__':

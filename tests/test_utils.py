@@ -1,10 +1,26 @@
-from src.main import show_info, view_n_lines, clean_and_save
+from src.main import view_n_lines, clean_df
 import pandas as pd
 
 def test_view_n_lines():
-    assert view_n_lines() == None
+    # test view 5 lines
+    df_tested_result = view_n_lines(pd.read_csv('test_data.csv'),5)
+    df_result = pd.read_csv('test_data_view_5_lines.csv')
+    assert df_tested_result.equals(df_result)
 
-def test_clean_and_save():
+def test_clean():
+    # test df cleaning
+    df_tested_result = clean_df(pd.read_csv('test_data.csv'))
+    df_result = pd.read_csv('test_data_clean.csv')
 
-    assert clean_and_save() == None
+    # rearrange index
+    df_tested_result.reset_index(drop=True, inplace=True)
+    df_result.reset_index(drop=True, inplace=True)
+
+    # type conversion, due to dropna restructure (for some reason)
+    last_col = df_tested_result.columns[-1]
+    df_tested_result[last_col] = df_tested_result[last_col].astype(int)
+    last_col_2 = df_result.columns[-1]
+    df_result[last_col_2] = df_result[last_col_2].astype(int)
+
+    assert df_tested_result.equals(df_result)
 
